@@ -74,7 +74,8 @@ public class UserImpl implements UserService {
                 return   response.error("Data tidak ditemukan", Config.ERROR_404);
             }
 
-            return response.sukses(userRepo.save(customer));
+            userRepo.delete(customer);
+            return response.sukses("sukses");
         } catch (Exception e) {
             logger.error("Eror save,{} " + e);
             return response.error("eror delete: " + e.getMessage(), Config.ERROR_500);

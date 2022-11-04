@@ -76,7 +76,8 @@ public class FilmImpl implements FilmService {
                 return  response.error("Data tidak ditemukan", Config.ERROR_404);
             }
 
-            return response.sukses(filmRepo.save(film));
+            filmRepo.delete(film);
+            return response.sukses("sukses");
         }catch (Exception e) {
             logger.error("Eror save,{} " + e);
             return response.error("eror delete: " + e.getMessage(), Config.ERROR_500);
