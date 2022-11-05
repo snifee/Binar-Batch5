@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Data
 
 public class SchedulingFilm {
-    @GeneratedValue
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private long id;
 

@@ -12,4 +12,6 @@ public interface FilmService {
     public Map delete(Film film);
 
     public Map getOnShowFilm(int size, int page);
+
+    public Map getScheduleFilm(Long id);
 }

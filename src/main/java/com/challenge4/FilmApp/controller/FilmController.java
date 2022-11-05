@@ -50,6 +50,11 @@ public class FilmController {
         return new ResponseEntity<Map>(list,HttpStatus.OK);
     }
 
+    @GetMapping(value = {"/filmschedule","/filmschedule/"})
+    public ResponseEntity<Map> filmschedule(@RequestParam() Long id){
+        return new ResponseEntity<Map>(filmService.getScheduleFilm(id),HttpStatus.OK);
+    }
+
 //    @GetMapping("/list")
 //    public ResponseEntity<Map> listByBama(
 //            @RequestParam() Integer page,
