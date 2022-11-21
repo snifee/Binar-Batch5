@@ -50,8 +50,8 @@ public class FilmController {
         return new ResponseEntity<Map>(list,HttpStatus.OK);
     }
 
-    @GetMapping(value = {"/filmschedule","/filmschedule/"})
-    public ResponseEntity<Map> filmschedule(@RequestParam() Long id){
+    @GetMapping(value = {"/filmschedule/{id}/","/filmschedule/{id}"})
+    public ResponseEntity<Map> filmschedule(@PathVariable(value = "id") Long id){
         return new ResponseEntity<Map>(filmService.getScheduleFilm(id),HttpStatus.OK);
     }
 

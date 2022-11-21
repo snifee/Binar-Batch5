@@ -10,4 +10,7 @@ public interface UserRepo extends PagingAndSortingRepository<Customer,Long> {
     @Query(value = "select c from Customer c where c.id = :id")
     public Object getUserById(@Param("id") Long id);
 
+    @Query(value = "select c from Customer c where c.username = :uname")
+    public Customer getUserByUsername(@Param("uname") String uname);
+
 }

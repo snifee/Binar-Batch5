@@ -106,7 +106,7 @@ public class FilmImpl implements FilmService {
             if (filmRepo.getById(id)== null){
                 return  response.error("Data tidak ditemukan", Config.ERROR_404);
             }
-            return response.sukses(filmRepo.getFilmSchedule(id));
+            return response.sukses(filmRepo.getById(id));
         }catch (Exception e) {
             logger.error("Eror save,{} " + e);
             return response.error("eror delete: " + e.getMessage(), Config.ERROR_500);

@@ -40,4 +40,11 @@ public class UserController {
     public ResponseEntity<Map> delete(@RequestBody Customer customer){
         return new ResponseEntity<Map>(userService.delete(customer),HttpStatus.OK);
     }
+
+    @PostMapping(value = {"/reserve"})
+    public ResponseEntity<Map> reserve( @RequestParam("username") String username,@RequestParam("scheduleId") String scheduleId,@RequestParam("seatId") Long seatId){
+        return new ResponseEntity<Map>(userService.reserve(username,scheduleId,seatId),HttpStatus.OK);
+    }
+
+//    public Map reserve(String username, String filmCode, Long scheduleID, Long seatId){
 }

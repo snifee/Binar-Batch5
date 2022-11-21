@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import lombok.Data;
 
+import java.util.List;
+
 
 @Table(name = "Seat")
 @Data
@@ -17,15 +19,10 @@ public class Seat {
     @Id
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "schedulingFilmId")
-    private SchedulingFilm schedulingFilm;
-
     private String namaStudio;
     private String noKursi;
 
+    @OneToMany
+    @JoinColumn(name = "seat_id")
+    private List<SchedulingFilm> schedulingFilms;
 }

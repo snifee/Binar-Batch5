@@ -11,4 +11,6 @@ public interface UserService {
     public Map update(Customer customer);
 
     public Map delete(Customer customer);
+
+    Map reserve(String username, String scheduleID, Long seatId);
 }

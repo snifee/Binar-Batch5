@@ -24,5 +24,7 @@ public class SchedulingFilm {
     @JoinColumn(name = "scheduleId")
     private Schedule schedule;
 
-
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Customer customer;
 }

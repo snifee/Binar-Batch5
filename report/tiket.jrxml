@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tiket" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e7e1f791-98ff-4ba4-8278-3a0354c74814">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Challenge"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[c2NoZWR1bGluZ19maWxtICwxNzYsMjA3LGE0MGUyNzRlLTExODctNDgzNi1iNmQ5LTY3ZTY3ZDJj
+MjY2YztzY2hlZHVsZXMgLDE1LDIwNyxlZjlhZGVjOC1lMTZmLTRjNmMtYjkxOC03NzA0YWY4NzE1
+YTg7ZmlsbXMgLDMzOCwyMjIsNDBhM2YyODQtMTIzZC00N2ZkLWJiMTgtNWJhZGU0MDUyYTYwO2N1
+c3RvbWVyICwxNSwxNSw1ZDMwNzRmZS02YWM4LTRiNTctODc3MS0yNjFjMGZkOTg2OGU7c2VhdCAs
+MTUsNDMwLDNmNmI1ZWY4LWEwOWYtNGNmNy05NzJjLWZkZmUzMTk1ZjhmYzs=]]>
+	</property>
+	<parameter name="uname" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT c.username,
+	s.jadwal_tayang,
+	se.no_kursi,
+	f.film_name
+FROM scheduling_film sf
+	JOIN customer c ON 
+	 c.id = sf.user_id 
+	JOIN schedules s ON 
+	 s.id = sf.id 
+	JOIN films f ON 
+	 sf.film_id = f.id 
+	JOIN seat se ON 
+	 se.id = sf.id 
+WHERE 
+	 c.username = $P{uname}]]>
+	</queryString>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="username"/>
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="jadwal_tayang" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="jadwal_tayang"/>
+		<property name="com.jaspersoft.studio.field.label" value="jadwal_tayang"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="schedules"/>
+	</field>
+	<field name="no_kursi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="no_kursi"/>
+		<property name="com.jaspersoft.studio.field.label" value="no_kursi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seat"/>
+	</field>
+	<field name="film_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="film_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="film_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="films"/>
+	</field>
+	<title>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="308" y="6" width="186" height="30" uuid="29bcc5c6-d09c-4893-add6-88e003e2dac2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tiket Binar Invoice]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="360" y="10" width="160" height="30" uuid="9c5cb662-976c-436b-9833-492babe95645"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{film_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="10" width="100" height="30" uuid="c499680a-1001-4b8f-8c9e-1439db6124b2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Film		:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="131" y="0" width="540" height="1" uuid="5d73db4e-5267-448b-b975-0a8d6e3c2195"/>
+			</line>
+			<textField>
+				<reportElement x="360" y="40" width="160" height="30" uuid="612f4e1b-b162-4cab-a09b-07535129d520"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jadwal_tayang}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="40" width="100" height="30" uuid="f12d444f-227b-4660-b763-83cd46c886e0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Schedule	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="360" y="70" width="160" height="30" uuid="b09ea825-2780-4bea-8a44-1423b2b0abdb"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_kursi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="260" y="70" width="100" height="30" uuid="92e309a2-0d07-4b69-84f3-8dc81f1d18fa"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Seat		:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

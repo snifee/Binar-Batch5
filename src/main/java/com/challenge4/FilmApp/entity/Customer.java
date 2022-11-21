@@ -21,8 +21,8 @@ public class Customer {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seats")
-    private List<Seat> seats;
+    @JoinColumn(name = "user_id")
+    private List<SchedulingFilm> schedulingFilms;
 
 
 }

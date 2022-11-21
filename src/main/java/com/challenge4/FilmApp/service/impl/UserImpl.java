@@ -1,6 +1,9 @@
 package com.challenge4.FilmApp.service.impl;
 
 import com.challenge4.FilmApp.entity.Customer;
+import com.challenge4.FilmApp.repository.FilmRepo;
+import com.challenge4.FilmApp.repository.SFRepo;
+import com.challenge4.FilmApp.repository.ScheduleRepo;
 import com.challenge4.FilmApp.repository.UserRepo;
 import com.challenge4.FilmApp.service.UserService;
 import com.challenge4.FilmApp.utils.Config;
@@ -10,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -22,13 +24,30 @@ public class UserImpl implements UserService {
     public UserRepo userRepo;
 
     @Autowired
+    public ScheduleRepo scheduleRepo;
+
+    @Autowired
+    public FilmRepo filmRepo;
+
+    @Autowired
+    public SFRepo sfRepo;
+
+    @Autowired
     public Response response;
 
     @Override
     public Map save(Customer customer) {
         try{
+
+
             if (customer.getUsername() == null){
                 return response.error("Wajib isi username", Config.ERROR_401);
+            }
+
+
+
+            if (userRepo.getUserByUsername(customer.getUsername())!=null){
+                return response.error("Username Telah Ada",Config.ERROR_401);
             }
 
             if (customer.getPassword() == null){
@@ -77,6 +96,25 @@ public class UserImpl implements UserService {
             userRepo.delete(customer);
             return response.sukses("sukses");
         } catch (Exception e) {
+            logger.error("Eror save,{} " + e);
+            return response.error("eror delete: " + e.getMessage(), Config.ERROR_500);
+        }
+    }
+
+    @Override
+    public Map reserve(String username, String scheduleID, Long seatId){
+        try {
+            if (scheduleRepo.getScheduleById(scheduleID)==null){
+                return response.error("jadwal tidak tersedia", Config.ERROR_401);
+            }
+
+            Long customerId = userRepo.getUserByUsername(username).getId();
+
+            sfRepo.saveReserve(1L,customerId,scheduleID,seatId);
+
+            return response.sukses("sukses");
+
+        }catch (Exception e) {
             logger.error("Eror save,{} " + e);
             return response.error("eror delete: " + e.getMessage(), Config.ERROR_500);
         }
