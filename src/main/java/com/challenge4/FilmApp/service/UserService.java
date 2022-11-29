@@ -1,16 +1,12 @@
 package com.challenge4.FilmApp.service;
 
-import com.challenge4.FilmApp.entity.Customer;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import com.challenge4.FilmApp.dao.request.LoginModel;
+import com.challenge4.FilmApp.dao.request.RegisterModel;
 
 import java.util.Map;
 
 public interface UserService {
-    public Map save(Customer customer);
+    Map registerManual(RegisterModel objModel) ;
 
-    public Map update(Customer customer);
-
-    public Map delete(Customer customer);
-
-    Map reserve(String username, String scheduleID, Long seatId);
+    Map login(LoginModel loginModel);
 }
